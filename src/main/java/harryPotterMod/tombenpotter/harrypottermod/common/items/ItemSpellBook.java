@@ -8,7 +8,7 @@ public class ItemSpellBook extends Item
 {
 	public ItemSpellBook(String itemName)
 	{
-		this.setUnlocalizedName("hp" + "." + "item" + itemName);
+		this.setUnlocalizedName("hp" + "." + "item" + "." + itemName);
 
 		this.setCreativeTab(HPCreativeTab.tabHPMod);
 		this.setMaxDamage(0);
