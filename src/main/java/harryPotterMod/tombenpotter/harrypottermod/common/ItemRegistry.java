@@ -11,7 +11,6 @@ public class ItemRegistry
 	public static void registerItems()
 	{
 		spellBook = new ItemSpellBook().setUnlocalizedName("spellbook");
-		
-		GameRegistry.registerItem(spellBook, "Spell Book");
+
 	}
 }
