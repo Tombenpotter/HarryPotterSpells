@@ -37,7 +37,8 @@ public class ProjectileDamage extends ProjectileBase{
     	 if (mop.entityHit != null && mop.entityHit instanceof EntityLiving)
          {
               EntityLivingBase hit = (EntityLivingBase)mop.entityHit;
-              hit.setHealth(hit.getHealth() - 2);
+              hit.heal(-2F);
+              hit.performHurtAnimation();
          }
     	 
         if (!this.worldObj.isRemote)

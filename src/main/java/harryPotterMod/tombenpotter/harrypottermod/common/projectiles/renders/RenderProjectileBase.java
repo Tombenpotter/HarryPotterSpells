@@ -1,5 +1,6 @@
 package harryPotterMod.tombenpotter.harrypottermod.common.projectiles.renders;
 
+import harryPotterMod.tombenpotter.harrypottermod.common.HarryPotterMod;
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileBase;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -28,7 +29,7 @@ public class RenderProjectileBase extends Render
 	float b;
 	float a;
 	
-    private static final ResourceLocation texture = new ResourceLocation("thaumcraftextras:textures/entity/projectilefreeze.png");
+    private static final ResourceLocation texture = new ResourceLocation(HarryPotterMod.modid + ":" + "textures/entity/projectilebase.png");
 
     public void render(ProjectileBase proj, double par2, double par4, double par6, float par8, float par9)
     {
