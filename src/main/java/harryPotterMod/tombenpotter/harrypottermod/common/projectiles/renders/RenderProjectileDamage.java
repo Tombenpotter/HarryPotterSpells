@@ -1,8 +1,7 @@
 package harryPotterMod.tombenpotter.harrypottermod.common.projectiles.renders;
 
-import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileBase;
+import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.spells.ProjectileDamage;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,15 +12,16 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class RenderProjectileBase extends Render
+public class RenderProjectileDamage extends RenderProjectileBase
 {
-	public RenderProjectileBase(float red, float green, float blue, float alpha)
+	public RenderProjectileDamage(float red, float green, float blue, float alpha)
 	{
+		super(red, green, blue, alpha);
+		
 		r = red;
 		g = green;
 		b = blue;
 		a = alpha;
-		
 	}
 	float r;
 	float g;
@@ -30,7 +30,7 @@ public class RenderProjectileBase extends Render
 	
     private static final ResourceLocation texture = new ResourceLocation("thaumcraftextras:textures/entity/projectilefreeze.png");
 
-    public void render(ProjectileBase proj, double par2, double par4, double par6, float par8, float par9)
+    public void render(ProjectileDamage proj, double par2, double par4, double par6, float par8, float par9)
     {
         this.bindEntityTexture(proj);
         GL11.glPushMatrix();
@@ -87,18 +87,18 @@ public class RenderProjectileBase extends Render
         GL11.glPopMatrix();
     }
 
-    protected ResourceLocation getTextures(ProjectileBase proj)
+    protected ResourceLocation getTextures(ProjectileDamage proj)
     {
         return texture;
     }
 
     protected ResourceLocation getEntityTexture(Entity entity)
     {
-        return this.getTextures((ProjectileBase)entity);
+        return this.getTextures((ProjectileDamage)entity);
     }
 
     public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9)
     {
-        this.render((ProjectileBase)entity, par2, par4, par6, par8, par9);
+        this.render((ProjectileDamage)entity, par2, par4, par6, par8, par9);
     }
 }
