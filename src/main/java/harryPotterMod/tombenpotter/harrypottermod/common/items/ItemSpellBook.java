@@ -16,6 +16,6 @@ public class ItemSpellBook extends Item
 	/* Making it clean */
 	public void init()
 	{
-		GameRegistry.registerItem(spellBook, "Spell Book");
+		GameRegistry.registerItem(this, "Spell Book");
 	}
 }
