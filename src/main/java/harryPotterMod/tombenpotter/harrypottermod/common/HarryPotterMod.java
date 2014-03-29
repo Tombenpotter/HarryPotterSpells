@@ -16,19 +16,16 @@ public class HarryPotterMod
 
 	@Instance(HarryPotterMod.modid)
 	public static HarryPotterMod instance;
-
+	
 	public static final String modid = "harrypottermod";
 	public static final String modAlias = "HPM";
-
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		/** Generating the Items **/
-		ItemRegistry.registerItems();
-
-		/** Loading the client and server proxies **/
 		proxy.load();
-
+		ItemRegistry.registerItems();
+		
 		print("Successful Pre-Init");
 	}
 
@@ -45,7 +42,7 @@ public class HarryPotterMod
 
 		print("Successful Post-Init");
 	}
-
+	
 	public void print(String message)
 	{
 		System.out.println("[" + modAlias + "] " + "Harry Potter Mod: " + message);
