@@ -10,5 +10,12 @@ public class ItemSpellBook extends Item
 		this.setCreativeTab(HPCreativeTab.tabHPMod);
 		this.setMaxDamage(0);
 		this.setMaxStackSize(1);
+		init();
+	}
+	
+	/* Making it clean */
+	public void init()
+	{
+		GameRegistry.registerItem(spellBook, "Spell Book");
 	}
 }
