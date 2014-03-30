@@ -35,7 +35,6 @@ public class HarryPotterMod
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
-
 		print("Successful Init");
 	}
 

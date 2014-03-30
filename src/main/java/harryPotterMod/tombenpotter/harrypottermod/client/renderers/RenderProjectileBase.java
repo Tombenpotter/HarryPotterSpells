@@ -1,4 +1,4 @@
-package harryPotterMod.tombenpotter.harrypottermod.common.projectiles.renders;
+package harryPotterMod.tombenpotter.harrypottermod.client.renderers;
 
 import harryPotterMod.tombenpotter.harrypottermod.common.HarryPotterMod;
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileBase;

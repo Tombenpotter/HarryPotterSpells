@@ -7,27 +7,33 @@ import net.minecraft.world.World;
 
 public class ProjectileBase extends EntityThrowable
 {
-    public ProjectileBase(World world)
-    {
-        super(world);
-    }
-    
-    public ProjectileBase(World world, EntityLivingBase livingbase)
-    {
-        super(world, livingbase);
-    }
+	public ProjectileBase(World world)
+	{
+		super(world);
+	}
 
-    public ProjectileBase(World world, double x, double y, double z)
-    {
-        super(world, x, y, z);
-    }
+	public ProjectileBase(World world, EntityLivingBase livingbase)
+	{
+		super(world, livingbase);
+	}
 
-    @Override
-    protected void onImpact(MovingObjectPosition mop)
-    {
-        if (!this.worldObj.isRemote)
-        {
-            this.setDead();
-        }
-    }
+	public ProjectileBase(World world, double x, double y, double z)
+	{
+		super(world, x, y, z);
+	}
+
+	@Override
+	protected void onImpact(MovingObjectPosition mop)
+	{
+		if (!this.worldObj.isRemote)
+		{
+			this.setDead();
+		}
+	}
+
+	@Override
+	protected float getGravityVelocity()
+	{
+		return 0F;
+	}
 }
