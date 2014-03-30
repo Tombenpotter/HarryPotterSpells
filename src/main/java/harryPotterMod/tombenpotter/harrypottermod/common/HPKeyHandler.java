@@ -1,6 +1,8 @@
 package harryPotterMod.tombenpotter.harrypottermod.common;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
@@ -24,6 +26,8 @@ public class HPKeyHandler
 		if (keyResetWand.getIsKeyPressed())
 		{
 			KeyBinding.setKeyBindState(HPKeyHandler.keyResetWand.getKeyCode(), false);
+			ItemStack stack = Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem();
+			ItemRegistry.wand.setDamage(stack, 0);
 		}
 	}
 }

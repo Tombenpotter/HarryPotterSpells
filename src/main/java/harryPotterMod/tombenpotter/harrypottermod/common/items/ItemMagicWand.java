@@ -110,9 +110,9 @@ public class ItemMagicWand extends Item
 			if (meta == 30)
 			{
 				stack.setItemDamage(0);
-			} else
+			} else if (meta == 0)
 			{
-				int i = meta;
+				int i = stack.getItemDamage();
 				stack.setItemDamage(i + 1);
 			}
 		} else
