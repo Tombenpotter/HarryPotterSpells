@@ -6,6 +6,7 @@ import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileA
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileConfundo;
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileSting;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellAnapneoSelf;
+import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellFinite;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellShootable;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellWingardiumLeviosa;
 
@@ -72,6 +73,11 @@ public class ItemMagicWand extends Item
 			name = "confundusWand";
 			break;
 		}
+		case 6:
+		{
+			name = "finiteWand";
+			break;
+		}
 		case 15:
 		{
 			name = "avadaKedavraWand";
@@ -110,7 +116,7 @@ public class ItemMagicWand extends Item
 			if (meta == 30)
 			{
 				stack.setItemDamage(0);
-			} else if (meta == 0)
+			} else
 			{
 				int i = stack.getItemDamage();
 				stack.setItemDamage(i + 1);
@@ -146,6 +152,11 @@ public class ItemMagicWand extends Item
 			{
 				ProjectileConfundo spell = new ProjectileConfundo(world, player);
 				SpellShootable.useSpell(spell, world, player);
+				player.swingItem();
+			}
+			if (meta == 6)
+			{
+				SpellFinite.useSpell(player);
 				player.swingItem();
 			}
 

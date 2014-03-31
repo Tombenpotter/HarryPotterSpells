@@ -26,8 +26,8 @@ public class HPKeyHandler
 		if (keyResetWand.getIsKeyPressed())
 		{
 			KeyBinding.setKeyBindState(HPKeyHandler.keyResetWand.getKeyCode(), false);
-			ItemStack stack = Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem();
-			ItemRegistry.wand.setDamage(stack, 0);
+			ItemStack stack = Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem();
+			stack.setItemDamage(0);
 		}
 	}
 }
