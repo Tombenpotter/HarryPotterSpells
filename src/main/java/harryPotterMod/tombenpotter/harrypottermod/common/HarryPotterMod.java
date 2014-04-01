@@ -1,6 +1,7 @@
 package harryPotterMod.tombenpotter.harrypottermod.common;
 
 import harryPotterMod.tombenpotter.harrypottermod.common.packet.ChannelHandler;
+import harryPotterMod.tombenpotter.harrypottermod.common.spells.Spells;
 
 import java.util.EnumMap;
 
@@ -35,7 +36,10 @@ public class HarryPotterMod
 	{
 		/** Generating the Items **/
 		ItemRegistry.registerItems();
-
+		
+		/** Registers Spells **/
+		Spells.init();		
+		
 		/** Loading the client and server proxies **/
 		proxy.load();
 

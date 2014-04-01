@@ -1,24 +1,30 @@
 package harryPotterMod.tombenpotter.harrypottermod.common.spells;
 
 import harryPotterMod.tombenpotter.harrypottermod.client.codechicken.lib.vec.Vector3;
+import harryPotterMod.tombenpotter.harrypottermod.common.lib.SpellInfo;
 
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 
-public class SpellWingardiumLeviosa
+public class SpellWingardiumLeviosa extends Spell
 {
+	public SpellWingardiumLeviosa() {
+		super(SpellInfo.spell_WingardiumLeviosa);
+	}
+
 	/**
 	 * Attention: this part originally belongs to the ThaumicTinkerer mod. All I did was modifying it to fulfill my needs.
 	 * 
 	 * ThaumicTinkerer is Open Source and distributed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_GB)
 	 * */
 
-	@SuppressWarnings("unchecked")
-	public static void useSpell(Entity entity)
-	{
+	@Override
+	public boolean useSpell(World world, int x, int y, int z, EntityLivingBase entity) {
 		Vector3 target = Vector3.fromEntityCenter(entity);
 
 		final int range = 6;
@@ -38,6 +44,7 @@ public class SpellWingardiumLeviosa
 					moveStuff(entityToMove, target, 0.3333F);
 			}
 		}
+		return true;
 	}
 
 	/**

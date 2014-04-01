@@ -5,14 +5,17 @@ import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileA
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileAvadaKedavra;
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileConfundo;
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileSting;
+import harryPotterMod.tombenpotter.harrypottermod.common.spells.Spell;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellAnapneoSelf;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellFinite;
+import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellHandler;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellShootable;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellWingardiumLeviosa;
 
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -41,51 +44,11 @@ public class ItemMagicWand extends Item
 	public String getUnlocalizedName(ItemStack itemstack)
 	{
 		String name = "";
-		switch (itemstack.getItemDamage())
-		{
-		case 0:
-		{
+		int id = itemstack.getTagCompound().getInteger("spellID");
+		if(id != 0){
+			name = SpellHandler.getSpellByID(id).getSpellUnlocalizedName();
+		}else{
 			name = "disabledWand";
-			break;
-		}
-		case 1:
-		{
-			name = "windgardiumLeviosaWand";
-			break;
-		}
-		case 2:
-		{
-			name = "anapneoSelfWand";
-			break;
-		}
-		case 3:
-		{
-			name = "anapneoOtherWand";
-			break;
-		}
-		case 4:
-		{
-			name = "stingWand";
-			break;
-		}
-		case 5:
-		{
-			name = "confundusWand";
-			break;
-		}
-		case 6:
-		{
-			name = "finiteWand";
-			break;
-		}
-		case 15:
-		{
-			name = "avadaKedavraWand";
-			break;
-		}
-		default:
-			name = "wrongMeta";
-			break;
 		}
 		return getUnlocalizedName() + "." + name;
 	}
@@ -108,66 +71,20 @@ public class ItemMagicWand extends Item
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-	{
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		int meta = stack.getItemDamage();
-		if (player.isSneaking())
-		{
-			if (meta == 30)
-			{
-				stack.setItemDamage(0);
-			} else
-			{
-				int i = stack.getItemDamage();
-				stack.setItemDamage(i + 1);
-			}
-		} else
-		{
-			if (meta == 0)
-			{
-				return stack;
-			}
-			if (meta == 1)
-			{
-				SpellWingardiumLeviosa.useSpell(player);
-			}
-			if (meta == 2)
-			{
-				SpellAnapneoSelf.useSpell(player);
-				player.swingItem();
-			}
-			if (meta == 3)
-			{
-				ProjectileAnapneo spell = new ProjectileAnapneo(world, player);
-				SpellShootable.useSpell(spell, world, player);
-				player.swingItem();
-			}
-			if (meta == 4)
-			{
-				ProjectileSting spell = new ProjectileSting(world, player);
-				SpellShootable.useSpell(spell, world, player);
-				player.swingItem();
-			}
-			if (meta == 5)
-			{
-				ProjectileConfundo spell = new ProjectileConfundo(world, player);
-				SpellShootable.useSpell(spell, world, player);
-				player.swingItem();
-			}
-			if (meta == 6)
-			{
-				SpellFinite.useSpell(player);
-				player.swingItem();
-			}
-
-			if (meta == 15)
-			{
-				ProjectileAvadaKedavra spell = new ProjectileAvadaKedavra(world, player);
-				SpellShootable.useSpell(spell, world, player);
-				player.attackEntityFrom(DamageSource.magic, 1);
-				player.addPotionEffect(new PotionEffect(Potion.confusion.id, 150, 0, true));
-				player.swingItem();
-			}
+		if (player.isSneaking()) {
+			int spellID = stack.getTagCompound().getInteger("spellID");
+			if(spellID > SpellHandler.getRegisteredSpells().length)
+				spellID = 0;
+			else
+				spellID++;
+			stack.getTagCompound().setInteger("spellID", spellID);
+		} else {
+			Spell spell = SpellHandler.getSpellByID(stack.getTagCompound().getInteger("spellID"));
+			if(spell != null)
+				if(spell.useSpell(world, (int)player.posX, (int)player.posY, (int)player.posZ, (EntityLivingBase)player))
+					player.swingItem();
 		}
 		return stack;
 	}
