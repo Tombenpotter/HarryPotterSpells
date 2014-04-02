@@ -13,7 +13,8 @@ import net.minecraft.world.World;
 
 public class SpellWingardiumLeviosa extends Spell
 {
-	public SpellWingardiumLeviosa() {
+	public SpellWingardiumLeviosa()
+	{
 		super(SpellInfo.spell_WingardiumLeviosa);
 	}
 
@@ -25,7 +26,8 @@ public class SpellWingardiumLeviosa extends Spell
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean useSpell(World world, int x, int y, int z, EntityLivingBase entity) {
+	public boolean useSpell(World world, int x, int y, int z, EntityLivingBase entity)
+	{
 		Vector3 target = Vector3.fromEntityCenter(entity);
 
 		final int range = 6;
@@ -65,9 +67,10 @@ public class SpellWingardiumLeviosa extends Spell
 		entity.motionY = finalVector.y * modifier;
 		entity.motionZ = finalVector.z * modifier;
 	}
-	
+
 	@Override
-	public boolean isWandFlicked() {
+	public boolean isWandFlicked()
+	{
 		return false;
 	}
 }
