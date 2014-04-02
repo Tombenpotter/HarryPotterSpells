@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 
 public class Spell {
 	
-	private int id;
+	protected int id;
 	protected String spell_UnlocalizedName;
 	
 	public Spell(String str) {

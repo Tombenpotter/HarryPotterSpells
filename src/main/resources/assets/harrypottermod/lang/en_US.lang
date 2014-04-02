@@ -1,14 +1,10 @@
--------------------ITEM NAMES-------------------
 
 -------------Creative Tab Name-------------
 itemGroup.HPModTab=Harry Potter Spells
 
 -------------Wand Names-------------
-item.hp.itemmagicwand.disabledWand.name=Wand
-item.hp.itemmagicwand.windgardiumLeviosaWand.name=Wand (Wingardium Leviosa)
-item.hp.itemmagicwand.anapneoSelfWand.name=Wand (Self Anapneo)
-item.hp.itemmagicwand.anapneoOtherWand.name=Wand (Anapneo)
-item.hp.itemmagicwand.stingWand.name=Wand (Stinging Hex)
-item.hp.itemmagicwand.confundusWand.name=Wand (Confundo)
-item.hp.itemmagicwand.finiteWand.name=Wand (Finite Incantatem)
-item.hp.itemmagicwand.avadaKedavraWand.name=Wand (Avada Kedravra)
+item.hp.itemmagicwand.name=Wand
+
+-------------Spell Names-------------
+spell.strings.harrypottermod:spell.anapneoSelf=Anapneo
+spell.strings.harrypottermod:spell.wingardiumLeviosa=Windgardium Leviosa

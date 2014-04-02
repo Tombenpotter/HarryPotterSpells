@@ -11,6 +11,7 @@ import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellFinite;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellHandler;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellShootable;
 import harryPotterMod.tombenpotter.harrypottermod.common.spells.SpellWingardiumLeviosa;
+import harryPotterMod.tombenpotter.harrypottermod.common.util.TranslationHelper;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -36,63 +38,62 @@ public class ItemMagicWand extends Item
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("hp" + "." + "item" + itemName);
 		this.setHasSubtypes(true);
-		name = itemName;
 		init();
 	}
-
-	@Override
-	public String getUnlocalizedName(ItemStack itemstack)
-	{
-		String name = "";
-		int id = itemstack.getTagCompound().getInteger("spellID");
-		if(id != 0){
-			name = SpellHandler.getSpellByID(id).getSpellUnlocalizedName();
-		}else{
-			name = "disabledWand";
-		}
-		return getUnlocalizedName() + "." + name;
-	}
-
-	String name;
 
 	public void init()
 	{
 		GameRegistry.registerItem(this, this.getUnlocalizedName());
 	}
-
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item par1, CreativeTabs creativeTabs, List list)
-	{
-		for (int i = 0; i <= 15; i++)
-		{
-			list.add(new ItemStack(this, 1, i));
+	public void getSubItems(Item par1, CreativeTabs creativeTabs, List list){
+		Spell[] spells = SpellHandler.getRegisteredSpells();
+		for (Spell spell : SpellHandler.getRegisteredSpells()){
+			ItemStack stack = new ItemStack(this);
+			
+			NBTTagCompound tag = new NBTTagCompound();
+			tag.setInteger("spellID", spell.getId());
+			stack.setTagCompound(tag);
+			
+			list.add(stack);
 		}
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		int meta = stack.getItemDamage();
+		NBTTagCompound tag = stack.stackTagCompound;		
 		if (player.isSneaking()) {
-			int spellID = stack.getTagCompound().getInteger("spellID");
-			if(spellID > SpellHandler.getRegisteredSpells().length)
-				spellID = 0;
+			int spellID = tag.getInteger("spellID");
+			if(spellID >= SpellHandler.getRegisteredSpells().length)
+				spellID = -1;
 			else
 				spellID++;
-			stack.getTagCompound().setInteger("spellID", spellID);
-		} else {
-			Spell spell = SpellHandler.getSpellByID(stack.getTagCompound().getInteger("spellID"));
-			if(spell != null)
-				if(spell.useSpell(world, (int)player.posX, (int)player.posY, (int)player.posZ, (EntityLivingBase)player))
-					player.swingItem();
+			tag.setInteger("spellID", spellID);
+		}else {
+			if(tag.getInteger("spellID") != -1){
+				Spell spell = SpellHandler.getSpellByID(tag.getInteger("spellID"));
+				if(spell != null)
+					if(spell.useSpell(world, (int)player.posX, (int)player.posY, (int)player.posZ, (EntityLivingBase)player))
+						player.swingItem();
+			}
 		}
+		stack.setTagCompound(tag);
 		return stack;
 	}
 
 	@Override
-	public boolean onDroppedByPlayer(ItemStack stack, EntityPlayer player)
-	{
+	public boolean onDroppedByPlayer(ItemStack stack, EntityPlayer player){
 		stack.setItemDamage(0);
 		return true;
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("spellID") && stack.getTagCompound().getInteger("spellID") != -1 && stack.getTagCompound().getInteger("spellID") < SpellHandler.getRegisteredSpells().length){
+			list.add(TranslationHelper.translate(TranslationHelper.translate(SpellHandler.getSpellByID(stack.getTagCompound().getInteger("spellID")).getSpellUnlocalizedName())));
+		}
+		super.addInformation(stack, player, list, par4);
 	}
 }

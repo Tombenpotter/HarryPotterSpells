@@ -8,6 +8,7 @@ public class SpellHandler {
 	
 	public static void registerSpell(Spell spell){
 		if(!registeredSpells.contains(spell)){
+			spell.id = registeredSpells.size() - 1;
 			registeredSpells.add(spell);
 			spell.spell_UnlocalizedName = "spell." + spell.spell_UnlocalizedName;
 			//TODO GG
@@ -22,8 +23,8 @@ public class SpellHandler {
 	}
 	
 	public static Spell getSpellByID(int id){
-		if(id < registeredSpells.size() && registeredSpells.get(id) != null)
+		if(id != -1 && id < registeredSpells.size() && registeredSpells.get(id) != null)
 			return registeredSpells.get(id);
-		else throw new IllegalArgumentException("Error: ID does not exist");
+		return null;
 	}
 }
