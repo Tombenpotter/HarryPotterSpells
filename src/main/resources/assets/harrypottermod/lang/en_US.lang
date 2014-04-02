@@ -8,3 +8,4 @@ item.hp.itemmagicwand.name=Wand
 -------------Spell Names-------------
 spell.strings.harrypottermod:spell.anapneoSelf=Anapneo
 spell.strings.harrypottermod:spell.wingardiumLeviosa=Windgardium Leviosa
+spell.strings.harrypottermod:spell.finite=Finite

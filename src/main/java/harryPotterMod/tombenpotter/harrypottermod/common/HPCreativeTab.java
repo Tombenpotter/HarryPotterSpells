@@ -10,7 +10,7 @@ public class HPCreativeTab
 		@Override
 		public Item getTabIconItem()
 		{
-			return ItemRegistry.spellBook;
+			return ItemRegistry.wand;
 		}
 	};
 }

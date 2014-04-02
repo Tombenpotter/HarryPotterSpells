@@ -1,7 +1,6 @@
 package harryPotterMod.tombenpotter.harrypottermod.common.spells;
 
 import harryPotterMod.tombenpotter.harrypottermod.common.lib.SpellInfo;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.world.World;
 

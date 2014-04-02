@@ -23,6 +23,7 @@ public class SpellWingardiumLeviosa extends Spell
 	 * ThaumicTinkerer is Open Source and distributed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License (http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_GB)
 	 * */
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean useSpell(World world, int x, int y, int z, EntityLivingBase entity) {
 		Vector3 target = Vector3.fromEntityCenter(entity);
@@ -63,5 +64,10 @@ public class SpellWingardiumLeviosa extends Spell
 		entity.motionX = finalVector.x * modifier;
 		entity.motionY = finalVector.y * modifier;
 		entity.motionZ = finalVector.z * modifier;
+	}
+	
+	@Override
+	public boolean isWandFlicked() {
+		return false;
 	}
 }
