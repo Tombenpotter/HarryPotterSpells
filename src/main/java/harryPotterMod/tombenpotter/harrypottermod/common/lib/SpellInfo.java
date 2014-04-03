@@ -10,4 +10,6 @@ public class SpellInfo
 	public static String spell_WingardiumLeviosa = TranslationHelper.BASE_KEY + "spell.wingardiumLeviosa";
 	public static String spell_StinginHex = TranslationHelper.BASE_KEY + "spell.stingingHex";
 	public static String spell_Anapneo = TranslationHelper.BASE_KEY + "spell.anapneo";
+	public static String spell_Confundo = TranslationHelper.BASE_KEY + "spell.confundo";
+	public static String spell_AvakaKedavra = TranslationHelper.BASE_KEY + "spell.avadaKedavra";
 }

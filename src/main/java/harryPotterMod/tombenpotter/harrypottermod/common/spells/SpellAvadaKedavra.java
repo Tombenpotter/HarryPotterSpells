@@ -1,5 +1,6 @@
 package harryPotterMod.tombenpotter.harrypottermod.common.spells;
 
+import harryPotterMod.tombenpotter.harrypottermod.common.lib.SpellInfo;
 import harryPotterMod.tombenpotter.harrypottermod.common.projectiles.ProjectileAvadaKedavra;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
@@ -10,9 +11,9 @@ import net.minecraft.world.World;
 public class SpellAvadaKedavra extends Spell
 {
 
-	public SpellAvadaKedavra(String str)
+	public SpellAvadaKedavra()
 	{
-		super(str);
+		super(SpellInfo.spell_AvakaKedavra);
 	}
 
 	@Override
