@@ -1,7 +1,11 @@
 package harryPotterMod.tombenpotter.harrypottermod.common.items;
 
 import harryPotterMod.tombenpotter.harrypottermod.common.HPCreativeTab;
+import harryPotterMod.tombenpotter.harrypottermod.common.HarryPotterMod;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemSpellBook extends Item
@@ -24,5 +28,12 @@ public class ItemSpellBook extends Item
 	public void init()
 	{
 		GameRegistry.registerItem(this, this.getUnlocalizedName());
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+	{
+		player.openGui(HarryPotterMod.instance, 0, world, 0, 0, 0);
+		return stack;
 	}
 }

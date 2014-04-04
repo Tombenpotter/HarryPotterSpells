@@ -36,12 +36,15 @@ public class HarryPotterMod
 	{
 		/** Generating the Items **/
 		ItemRegistry.registerItems();
-		
+
 		/** Registers Spells **/
-		Spells.init();		
-		
+		Spells.init();
+
 		/** Loading the client and server proxies **/
 		proxy.load();
+
+		/** Registering the GUI Handler **/
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, proxy);
 
 		print("Successful Pre-Init");
 	}

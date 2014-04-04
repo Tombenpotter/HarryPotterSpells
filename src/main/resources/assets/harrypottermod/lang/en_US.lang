@@ -5,6 +5,9 @@ itemGroup.HPModTab=Harry Potter Spells
 -------------Wand Names-------------
 item.hp.itemmagicwand.name=Wand
 
+-------------Key Names-------------
+key.hp_openBook=Open Spell Book
+
 -------------Spell Names-------------
 spell.strings.harrypottermod:spell.anapneoSelf=Anapneo Humanus
 spell.strings.harrypottermod:spell.wingardiumLeviosa=Windgardium Leviosa

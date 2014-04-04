@@ -2,7 +2,6 @@ package harryPotterMod.tombenpotter.harrypottermod.common;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.item.ItemStack;
 
 import org.lwjgl.input.Keyboard;
 
@@ -12,7 +11,7 @@ import cpw.mods.fml.common.gameevent.InputEvent;
 
 public class HPKeyHandler
 {
-	public static KeyBinding keyResetWand = new KeyBinding("key.hp_reset_wand", Keyboard.KEY_R, "Harry Potter Mod");
+	public static KeyBinding keyResetWand = new KeyBinding("key.hp_openBook", Keyboard.KEY_R, "Harry Potter Mod");
 	public static boolean keyPressed = false;
 
 	public HPKeyHandler()
@@ -26,8 +25,10 @@ public class HPKeyHandler
 		if (keyResetWand.getIsKeyPressed())
 		{
 			KeyBinding.setKeyBindState(HPKeyHandler.keyResetWand.getKeyCode(), false);
-			ItemStack stack = Minecraft.getMinecraft().thePlayer.getCurrentEquippedItem();
-			stack.setItemDamage(0);
+			if (Minecraft.getMinecraft().thePlayer.inventory.hasItem(ItemRegistry.spellBook))
+			{
+				Minecraft.getMinecraft().thePlayer.openGui(HarryPotterMod.instance, 0, Minecraft.getMinecraft().theWorld, 0, 0, 0);
+			}
 		}
 	}
 }
