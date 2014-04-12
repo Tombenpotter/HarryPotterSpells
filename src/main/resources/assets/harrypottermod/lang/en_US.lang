@@ -2,13 +2,24 @@
 -------------Creative Tab Name-------------
 itemGroup.HPModTab=Harry Potter Spells
 
--------------Wand Names-------------
-item.hp.itemmagicwand.name=Wand
+-------------Item Names-------------
+item.wand.name=Wand
+item.spellBook.spellBook.name=Spell Book
+item.spellBook.grimoire.name=Book of Spells
 
 -------------Key Names-------------
 key.hp_openBook=Open Spell Book
+key.hp_left=Toggle left
+key.hp_right=Toggle right
 
 -------------Spell Names-------------
+
+hp.spell.accio=Accio
+hp.spell.expelliarmus=Expelliarmus
+hp.spell.banishingCharm=Depulso
+hp.spell.alarteAscendare=Alarte Ascendare
+
+-------------Old Names---------------
 spell.strings.harrypottermod:spell.anapneoSelf=Anapneo Humanus
 spell.strings.harrypottermod:spell.wingardiumLeviosa=Windgardium Leviosa
 spell.strings.harrypottermod:spell.finite=Finite
